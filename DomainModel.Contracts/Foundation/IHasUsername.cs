@@ -2,6 +2,6 @@
 {
     public interface IHasUsername
     {
-        public string Username { get; set; }
+        string Username { get; set; }
     }
 }

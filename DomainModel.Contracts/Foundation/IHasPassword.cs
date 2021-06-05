@@ -2,6 +2,6 @@
 {
     public interface IHasPassword
     {
-        public string Password { get; set; }
+        string Password { get; set; }
     }
 }
