@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Infrastructure.Entities.Models;
+using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace Infrastructure.Entities.Models
+namespace Infrastructure.Entities.Contexts
 {
     public partial class SPPMContext : DbContext
     {
