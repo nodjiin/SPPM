@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DomainModel.Contracts.Foundation;
 
 #nullable disable
 
-namespace Infrastructure.Entities.Models
+namespace DomainModel
 {
     public partial class Profile : IUserIdentity
     {

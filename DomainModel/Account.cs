@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Infrastructure.Entities.Models
+namespace DomainModel
 {
     public class Account : IHasId, IHasUsername, IHasPassword
     {

@@ -1,5 +1,5 @@
-﻿using Infrastructure.Contracts.Repositories.Foundation;
-using Infrastructure.Entities.Models;
+﻿using DomainModel;
+using Infrastructure.Contracts.Repositories.Foundation;
 
 namespace Infrastructure.Contracts.Repositories
 {
