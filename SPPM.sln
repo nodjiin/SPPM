@@ -34,6 +34,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "11_Infrastructure", "11_Inf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Contracts", "Application.Contracts\Application.Contracts.csproj", "{091DDC66-374E-4D01-B002-00F967EDE2CF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{CC0A8C77-C5FA-4361-8C1D-0CD0EC214748}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UML", "UML", "{D33D2115-9624-4BCC-A43A-BF9F94F68D6B}"
+ProjectSection(SolutionItems) = preProject
+	Documentation\UML\DomainModel.graphml = Documentation\UML\DomainModel.graphml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requirements", "Requirements", "{9563A039-705E-46F4-A707-D47A33040545}"
+ProjectSection(SolutionItems) = preProject
+	Documentation\Requirements\SimpleRequirements.txt = Documentation\Requirements\SimpleRequirements.txt
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,5 +97,7 @@ Global
 		{0040CC7D-98F7-446B-A4BA-1F38EDA9D7BF} = {D1A41638-865A-4C8A-BF0B-7A1D9FA37121}
 		{6E7FDDC0-BDBE-43D1-AFF9-95AC5BA736D4} = {D1A41638-865A-4C8A-BF0B-7A1D9FA37121}
 		{091DDC66-374E-4D01-B002-00F967EDE2CF} = {2D4E906F-4F83-4F3A-8543-A4DB1E0FF324}
+		{D33D2115-9624-4BCC-A43A-BF9F94F68D6B} = {CC0A8C77-C5FA-4361-8C1D-0CD0EC214748}
+		{9563A039-705E-46F4-A707-D47A33040545} = {CC0A8C77-C5FA-4361-8C1D-0CD0EC214748}
 	EndGlobalSection
 EndGlobal

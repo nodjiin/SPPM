@@ -1,0 +1,27 @@
+﻿The application shall:
+
+Login
+
+	• Allow the user to create a profile, formed by the e-mail+password combo.
+	• Allow the user to log in to the Password Manager using the above account.
+	• (?) Authenticate the account via email.
+	• (?) Allow the user to reset the account credentials via email.
+
+Password Management
+
+	• Allow the user to create accounts. An account must consist of the Username + Password + account target (for a website the url, for an application its name) combo .
+	• Allow the user to save, visualize and manage any number of accounts.
+	• Allow the application to automatically generate a secure password, unique to a certain account. (algorithm and security policy TBD)
+
+Security 
+
+	• All the application data related to a certain user shall be encripted with TDE. 
+	• The connection between the client and SQL Server shall be encripted by SSL. (check for certificate)
+	
+
+Persistance 
+
+	• Save application data within a relational DB.
+
+Deploy
+    • Docker.
