@@ -9,7 +9,7 @@ namespace Domain.Services
     {
         public string GeneratePassword(IReadOnlyCollection<char> charSet, IReadOnlyCollection<char> numberSet, 
             IReadOnlyCollection<char> specialCharSet,
-            int passwordLength, bool includeUpperCase)
+            int passwordLength = 10, bool includeUpperCase = true)
         {
             if (charSet == null) throw new ArgumentNullException(nameof(charSet));
             if (numberSet == null) throw new ArgumentNullException(nameof(numberSet));
@@ -40,22 +40,22 @@ namespace Domain.Services
 
             for (var i = 0; i < passwordLength; i++)
             {
-                var charGroupIndex = rand.Next(1, fullCharSets.Count);
-                AddRandomCharToPassword(fullCharSets[charGroupIndex], rand, generatedPassword);
+                var charGroupIndex = rand.Next(0, fullCharSets.Count);
+                generatedPassword = AddRandomCharToPassword(fullCharSets[charGroupIndex], rand, generatedPassword);
             }
 
             return generatedPassword;
         }
 
-        private IReadOnlyCollection<char> GenerateUpperCaseCharSet(IEnumerable<char> charSet)
+        private static IReadOnlyCollection<char> GenerateUpperCaseCharSet(IEnumerable<char> charSet)
         {
             return charSet.Select(char.ToUpper).ToList();
         }
 
-        private static void AddRandomCharToPassword(IReadOnlyCollection<char> charSet, Random rand, string password)
+        private static string AddRandomCharToPassword(IReadOnlyCollection<char> charSet, Random rand, string password)
         {
             var index = rand.Next(0, charSet.Count);
-            password = $"{password}{charSet.ElementAt(index).ToString()}";
+            return $"{password}{charSet.ElementAt(index).ToString()}";
         }
     }
 }
