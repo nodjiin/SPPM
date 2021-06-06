@@ -13,7 +13,8 @@ namespace Domain.Services.Unit.Tests
         private IReadOnlyCollection<char> _numberSet;
         private IReadOnlyCollection<char> _specialCharSet;
         private IReadOnlyCollection<char> _fullCharSet;
-        
+        private IReadOnlyCollection<char> _lowCaseCharSet;
+
         [SetUp]
         public void SetUp()
         {
@@ -22,6 +23,7 @@ namespace Domain.Services.Unit.Tests
             _numberSet = new[] { '1', '2', '3' };
             _specialCharSet = new[] { '+', '-' };
             _fullCharSet = new[] { 'a', 'b', 'c', 'd', 'A', 'B', 'C', 'D', '1', '2', '3', '+', '-' };
+            _lowCaseCharSet = new[] { 'a', 'b', 'c', 'd', '1', '2', '3', '+', '-' };
         }
                 
         [Test]
@@ -77,6 +79,17 @@ namespace Domain.Services.Unit.Tests
             var password = _generator.GeneratePassword(_charSet, _numberSet, _specialCharSet);
             
             Assert.That(password.ToCharArray().Distinct(), Is.SubsetOf(_fullCharSet));
+        }
+        
+        [Test]
+        public void PasswordGenerator_3SetDefined_ReturnPasswordContainingOnlyLowCaseElements()
+        {
+            var password = _generator.GeneratePassword(_charSet,
+                _numberSet,
+                _specialCharSet,
+                includeUpperCase: false);
+            
+            Assert.That(password.ToCharArray().Distinct(), Is.SubsetOf(_lowCaseCharSet));
         }
         
         [Test]
