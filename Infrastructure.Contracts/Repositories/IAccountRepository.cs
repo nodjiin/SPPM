@@ -1,4 +1,4 @@
-﻿using DomainModel;
+﻿using Domain.Model;
 using Infrastructure.Contracts.Repositories.Foundation;
 
 namespace Infrastructure.Contracts.Repositories

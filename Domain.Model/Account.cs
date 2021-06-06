@@ -1,8 +1,8 @@
-﻿using DomainModel.Contracts.Foundation;
+﻿using Domain.Model.Contracts.Foundation;
 
 #nullable disable
 
-namespace DomainModel
+namespace Domain.Model
 {
     public class Account : IHasId, IHasUsername, IHasPassword
     {

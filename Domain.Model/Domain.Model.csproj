@@ -3,10 +3,11 @@
     <PropertyGroup>
         <TargetFramework>net5.0-windows</TargetFramework>
         <UseWPF>true</UseWPF>
+        <RootNamespace>DomainModel</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DomainModel.Contracts\DomainModel.Contracts.csproj" />
+      <ProjectReference Include="..\Domain.Contracts\Domain.Contracts.csproj" />
     </ItemGroup>
 
 </Project>

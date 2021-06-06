@@ -1,4 +1,4 @@
-﻿using DomainModel;
+﻿using Domain.Model;
 using Infrastructure.Contracts.Repositories;
 using Infrastructure.Entities.Contexts;
 using Infrastructure.Repository.Base;

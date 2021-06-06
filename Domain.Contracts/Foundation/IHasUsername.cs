@@ -1,4 +1,4 @@
-﻿namespace DomainModel.Contracts.Foundation
+﻿namespace Domain.Model.Contracts.Foundation
 {
     public interface IHasUsername
     {
