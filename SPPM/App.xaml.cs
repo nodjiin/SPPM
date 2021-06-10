@@ -28,7 +28,6 @@ namespace SPPM
             await _host.StartAsync();
             _guiManager = new GuiManager(_host);
             _guiManager.DisplayLoginWindow();
-
         }
 
         private async void Application_Exit(object sender, ExitEventArgs e)

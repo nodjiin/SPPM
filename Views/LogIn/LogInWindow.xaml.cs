@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using ViewModels.Contracts.Login;
 
 namespace Views.LogIn
@@ -8,7 +9,8 @@ namespace Views.LogIn
         private ILoginViewModel _viewModel;
         public LogInWindow(ILoginViewModel viewModel)
         {
-            _viewModel = viewModel;
+            _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+            _viewModel.Closed += (_,_) => Close();
             InitializeComponent();
         }
 

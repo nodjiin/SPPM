@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Domain.Services;
+using DomainModel.Contracts.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ViewModels.Contracts.Login;
 using ViewModels.Login;
@@ -15,6 +17,7 @@ namespace SPPM
                     // services.AddSingleton<ITextService, TextService>();
                     services.AddScoped<LogInWindow>();
                     services.AddScoped<ILoginViewModel, LoginViewModel>();
+                    services.AddSingleton<IAuthenticationService, AuthenticationService>();
                 });
     }
 }

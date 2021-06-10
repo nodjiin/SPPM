@@ -1,23 +1,37 @@
 ﻿using System;
 using System.Windows.Input;
 using Application.Utils.Command;
+using DomainModel.Contracts.Services;
+using ViewModels.Base;
 using ViewModels.Contracts.Login;
 
 namespace ViewModels.Login
 {
-    public class LoginViewModel : ILoginViewModel
+    public class LoginViewModel : RaiseCloseEventBaseViewModel, ILoginViewModel
     {
+        private readonly IAuthenticationService _authenticationService;
         public string Username { get; set; }
         public ICommand AuthenticateCommand { get; }
         
-        public LoginViewModel()
+        public LoginViewModel(IAuthenticationService authenticationService)
         {
-            AuthenticateCommand = new RelayCommand(Authenticate);
+            _authenticationService = authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));
+            AuthenticateCommand = new RelayCommand<string>(Authenticate);
         }
 
-        private void Authenticate(object obj)
+        private async void Authenticate(string password)
         {
-            // TODO authenticate
+            var response = await _authenticationService.AuthenticateAsync(Username, password);
+
+            if (!response.AuthenticationSuccessful)
+            {
+                // TODO display message (add mediator)
+                
+            }
+            else
+            {
+                RaiseCloseEvent();
+            }
         }
     }
 }
