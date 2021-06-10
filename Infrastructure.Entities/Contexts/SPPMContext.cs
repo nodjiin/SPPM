@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using Domain.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Entities.Contexts
 {
-    public partial class SPPMContext : DbContext
+    public class SPPMContext : DbContext
     {
         public SPPMContext()
         {
@@ -23,9 +24,7 @@ namespace Infrastructure.Entities.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {
                 optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["SPPMContext"].ConnectionString);
-            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -99,6 +98,9 @@ namespace Infrastructure.Entities.Contexts
             OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        private void OnModelCreatingPartial(ModelBuilder modelBuilder)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -5,7 +5,7 @@ using Domain.Model.Contracts.Foundation;
 
 namespace Domain.Model
 {
-    public partial class Profile : IUserIdentity
+    public class Profile : IUserIdentity
     {
         public Profile()
         {
@@ -13,10 +13,10 @@ namespace Domain.Model
         }
 
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
         public string EmailAddress { get; set; }
 
         public virtual ICollection<Account> Accounts { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

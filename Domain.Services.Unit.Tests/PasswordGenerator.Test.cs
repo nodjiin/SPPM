@@ -8,6 +8,17 @@ namespace Domain.Services.Unit.Tests
     [TestFixture]
     public class PasswordGenerator_Test
     {
+        [SetUp]
+        public void SetUp()
+        {
+            _generator = new PasswordGenerator();
+            _charSet = new[] {'a', 'b', 'c', 'd'};
+            _numberSet = new[] {'1', '2', '3'};
+            _specialCharSet = new[] {'+', '-'};
+            _fullCharSet = new[] {'a', 'b', 'c', 'd', 'A', 'B', 'C', 'D', '1', '2', '3', '+', '-'};
+            _lowCaseCharSet = new[] {'a', 'b', 'c', 'd', '1', '2', '3', '+', '-'};
+        }
+
         private PasswordGenerator _generator;
         private IReadOnlyCollection<char> _charSet;
         private IReadOnlyCollection<char> _numberSet;
@@ -15,17 +26,6 @@ namespace Domain.Services.Unit.Tests
         private IReadOnlyCollection<char> _fullCharSet;
         private IReadOnlyCollection<char> _lowCaseCharSet;
 
-        [SetUp]
-        public void SetUp()
-        {
-            _generator = new PasswordGenerator();
-            _charSet = new[] { 'a', 'b', 'c', 'd' };
-            _numberSet = new[] { '1', '2', '3' };
-            _specialCharSet = new[] { '+', '-' };
-            _fullCharSet = new[] { 'a', 'b', 'c', 'd', 'A', 'B', 'C', 'D', '1', '2', '3', '+', '-' };
-            _lowCaseCharSet = new[] { 'a', 'b', 'c', 'd', '1', '2', '3', '+', '-' };
-        }
-                
         [Test]
         public void PasswordGenerator_charSetIsNull_ThrowArgumentNullException()
         {
@@ -52,7 +52,7 @@ namespace Domain.Services.Unit.Tests
             Assert.That(() => _generator.GeneratePassword(_charSet, _numberSet, _specialCharSet),
                 Throws.ArgumentNullException);
         }
-        
+
         [Test]
         public void PasswordGenerator_AllTheSetsAreEmpty_ThrowArgumentException()
         {
@@ -63,7 +63,7 @@ namespace Domain.Services.Unit.Tests
             Assert.That(() => _generator.GeneratePassword(_charSet, _numberSet, _specialCharSet),
                 Throws.ArgumentException);
         }
-        
+
         [Test]
         public void PasswordGenerator_CharSetIsEmptyAndUpperCaseAttributeIsTrue_ThrowArgumentException()
         {
@@ -72,15 +72,15 @@ namespace Domain.Services.Unit.Tests
             Assert.That(() => _generator.GeneratePassword(_charSet, _numberSet, _specialCharSet),
                 Throws.ArgumentException);
         }
-        
+
         [Test]
         public void PasswordGenerator_3SetDefined_ReturnPasswordWithContainingOnlyElementsOfTheSets()
         {
             var password = _generator.GeneratePassword(_charSet, _numberSet, _specialCharSet);
-            
+
             Assert.That(password.ToCharArray().Distinct(), Is.SubsetOf(_fullCharSet));
         }
-        
+
         [Test]
         public void PasswordGenerator_3SetDefined_ReturnPasswordContainingOnlyLowCaseElements()
         {
@@ -88,10 +88,10 @@ namespace Domain.Services.Unit.Tests
                 _numberSet,
                 _specialCharSet,
                 includeUpperCase: false);
-            
+
             Assert.That(password.ToCharArray().Distinct(), Is.SubsetOf(_lowCaseCharSet));
         }
-        
+
         [Test]
         [TestCase(20)]
         public void PasswordGenerator_PasswordLengthDefined_ReturnPasswordWithRequestedLength(int length)
@@ -99,8 +99,8 @@ namespace Domain.Services.Unit.Tests
             var password = _generator.GeneratePassword(_charSet,
                 _numberSet,
                 _specialCharSet,
-                passwordLength: length);
-            
+                length);
+
             Assert.That(password, Has.Length.EqualTo(length));
         }
     }

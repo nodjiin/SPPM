@@ -17,12 +17,12 @@ namespace Infrastructure.Repository
 
         public IAccountRepository Accounts { get; }
         public IProfileRepository Profiles { get; }
-        
+
         public void Dispose()
         {
             _context.Dispose();
         }
-        
+
         public int Complete()
         {
             return _context.SaveChanges();

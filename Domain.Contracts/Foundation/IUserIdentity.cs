@@ -2,6 +2,5 @@
 {
     public interface IUserIdentity : IHasUsername, IHasPassword
     {
-        
     }
 }

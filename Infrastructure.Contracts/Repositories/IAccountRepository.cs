@@ -5,6 +5,5 @@ namespace Infrastructure.Contracts.Repositories
 {
     public interface IAccountRepository : IRepository<Account>
     {
-        
     }
 }

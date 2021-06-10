@@ -5,6 +5,6 @@
              Exit="Application_Exit">
     <!-- StartupUri="pack://application:,,,/Views;component/LogIn/LogInWindow.xaml" -->
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>

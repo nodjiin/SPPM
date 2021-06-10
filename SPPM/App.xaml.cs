@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Views.LogIn;
 
 namespace SPPM
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    ///     Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
-        private IHost _host;
         private GuiManager _guiManager;
+        private readonly IHost _host;
+
         public App()
         {
             _host = StartupManager.CreateHostBuilder(null).Build();

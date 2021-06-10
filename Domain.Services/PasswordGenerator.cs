@@ -7,7 +7,7 @@ namespace Domain.Services
 {
     public class PasswordGenerator : IPasswordGenerator
     {
-        public string GeneratePassword(IReadOnlyCollection<char> charSet, IReadOnlyCollection<char> numberSet, 
+        public string GeneratePassword(IReadOnlyCollection<char> charSet, IReadOnlyCollection<char> numberSet,
             IReadOnlyCollection<char> specialCharSet,
             int passwordLength = 10, bool includeUpperCase = true)
         {
@@ -20,20 +20,22 @@ namespace Domain.Services
                 case false when !numberSet.Any() && !specialCharSet.Any():
                     throw new ArgumentException("At least one of the 3 characters collections shouldn't be empty");
                 case false when includeUpperCase:
-                    throw new ArgumentException($"To include a collection of upper case characters {nameof(charSet)} shouldn't be empty");
+                    throw new ArgumentException(
+                        $"To include a collection of upper case characters {nameof(charSet)} shouldn't be empty");
             }
 
             var fullCharSets = new List<IReadOnlyCollection<char>>();
-            
+
             if (charSet.Any()) fullCharSets.Add(charSet);
             if (numberSet.Any()) fullCharSets.Add(numberSet);
             if (specialCharSet.Any()) fullCharSets.Add(specialCharSet);
             if (includeUpperCase) fullCharSets.Add(GenerateUpperCaseCharSet(charSet));
-            
+
             return FillPasswordFromCharSets(passwordLength, fullCharSets);
         }
 
-        private static string FillPasswordFromCharSets(int passwordLength, IReadOnlyList<IReadOnlyCollection<char>> fullCharSets)
+        private static string FillPasswordFromCharSets(int passwordLength,
+            IReadOnlyList<IReadOnlyCollection<char>> fullCharSets)
         {
             var generatedPassword = string.Empty;
             var rand = new Random();

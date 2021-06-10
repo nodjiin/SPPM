@@ -6,11 +6,12 @@ namespace Views.LogIn
 {
     public partial class LogInWindow : Window
     {
-        private ILoginViewModel _viewModel;
+        private readonly ILoginViewModel _viewModel;
+
         public LogInWindow(ILoginViewModel viewModel)
         {
             _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
-            _viewModel.Closed += (_,_) => Close();
+            _viewModel.Closed += (_, _) => Close();
             InitializeComponent();
         }
 

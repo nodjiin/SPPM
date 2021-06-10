@@ -5,6 +5,5 @@ namespace Infrastructure.Contracts.Repositories
 {
     public interface IProfileRepository : IRepository<Profile>
     {
-        
     }
 }

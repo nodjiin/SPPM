@@ -10,8 +10,9 @@ namespace SPPM
 {
     public static class StartupManager
     {
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
                 .ConfigureServices((context, services) =>
                 {
                     // services.AddSingleton<ITextService, TextService>();
@@ -19,5 +20,6 @@ namespace SPPM
                     services.AddScoped<ILoginViewModel, LoginViewModel>();
                     services.AddSingleton<IAuthenticationService, AuthenticationService>();
                 });
+        }
     }
 }

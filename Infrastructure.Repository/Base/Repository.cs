@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Linq.Expressions;
 using Infrastructure.Contracts.Repositories.Foundation;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repository.Base
 {

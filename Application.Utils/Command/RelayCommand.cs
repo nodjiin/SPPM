@@ -5,19 +5,19 @@ namespace Application.Utils.Command
 {
     public class RelayCommand<TParameter> : ICommand
     {
-        private readonly Action<TParameter> _execute;
         private readonly Predicate<TParameter> _canExecute;
-
-        public event EventHandler CanExecuteChanged
-        {
-            add => CommandManager.RequerySuggested += value;
-            remove => CommandManager.RequerySuggested -= value;
-        }
+        private readonly Action<TParameter> _execute;
 
         public RelayCommand(Action<TParameter> execute, Predicate<TParameter> canExecute = null)
         {
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
         }
 
         public bool CanExecute(object parameter)
@@ -27,7 +27,7 @@ namespace Application.Utils.Command
 
         public void Execute(object parameter)
         {
-            _execute((TParameter) parameter);    
-        }    
-    }  
+            _execute((TParameter) parameter);
+        }
+    }
 }

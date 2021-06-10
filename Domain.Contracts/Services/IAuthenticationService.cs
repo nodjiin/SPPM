@@ -6,6 +6,6 @@ namespace DomainModel.Contracts.Services
     public interface IAuthenticationService
     {
         public IAuthenticationStatus Status { get; }
-       Task<IAuthenticationResponse> AuthenticateAsync(string username, string password, params object[] args);
+        Task<IAuthenticationResponse> AuthenticateAsync(string username, string password, params object[] args);
     }
 }
