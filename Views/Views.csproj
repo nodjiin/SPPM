@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Application.Utils\Application.Utils.csproj" />
       <ProjectReference Include="..\ViewModels.Contracts\ViewModels.Contracts.csproj" />
     </ItemGroup>
 

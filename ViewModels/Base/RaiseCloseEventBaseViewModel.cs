@@ -3,13 +3,10 @@ using ViewModels.Contracts.Base;
 
 namespace ViewModels.Base
 {
-    public class RaiseCloseEventBaseViewModel : IRaiseCloseEvent
+    public abstract class RaiseCloseEventBaseViewModel : BaseViewModel, IRaiseCloseEvent
     {
         public event EventHandler Closed;
 
-        public void RaiseCloseEvent()
-        {
-            Closed?.Invoke(this, EventArgs.Empty);
-        }
+        protected void RaiseCloseEvent() => Closed?.Invoke(this, EventArgs.Empty);
     }
 }
