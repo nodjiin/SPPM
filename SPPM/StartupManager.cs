@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ViewModels.Contracts.Login;
+using ViewModels.Contracts.Portfolio;
 using ViewModels.Login;
 using Views.LogIn;
 using Views.Portfolio;
@@ -30,6 +31,7 @@ namespace SPPM
                         .AddScoped<LogInWindow>()
                         .AddScoped<ILoginViewModel, LoginViewModel>()
                         .AddScoped<PortfolioWindow>()
+                        .AddScoped<IPortfolioViewModel, IPortfolioViewModel>()
                         .AddSingleton<IAuthenticationService, AuthenticationService>()
                         .AddSingleton<IMessageMediator, MessageMediator>()
                         .AddSingleton<GuiManager>();

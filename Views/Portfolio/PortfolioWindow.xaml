@@ -3,10 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Views"
+        xmlns:portfolio="clr-namespace:ViewModels.Contracts.Portfolio;assembly=ViewModels.Contracts"
         mc:Ignorable="d"
-        Title="Porfolio" Height="450" Width="800">
+        d:DataContext="{d:DesignInstance portfolio:IPortfolioViewModel}"
+        Title="Accounts Portfolio" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding Accounts}">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Target" Binding="{Binding Target}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Password" Binding="{Binding Password}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Command="{Binding SaveCommand}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="5">
+                Save
+            </Button>
+            <Button Grid.Column="1" Click="CloseWindowButtonClick"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Margin="5">
+                Cancel
+            </Button>
+        </Grid>
     </Grid>
 </Window>

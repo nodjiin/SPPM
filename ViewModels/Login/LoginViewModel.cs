@@ -10,12 +10,10 @@ namespace ViewModels.Login
 {
     public class LoginViewModel : RaiseCloseEventBaseViewModel, ILoginViewModel
     {
-        private readonly IMessageMediator _mediator;
         private readonly IAuthenticationService _authenticationService;
 
-        public LoginViewModel(IMessageMediator mediator, IAuthenticationService authenticationService)
+        public LoginViewModel(IMessageMediator mediator, IAuthenticationService authenticationService) : base(mediator)
         {
-            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
             _authenticationService =
                 authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));
             AuthenticateCommand = new RelayCommand<string>(Authenticate);
@@ -29,7 +27,7 @@ namespace ViewModels.Login
             var response = await _authenticationService.AuthenticateAsync(Username, password);
 
             if (!response.AuthenticationSuccessful)
-                _mediator.SendMessage(MediatorToken.LoginToken, response.AuthenticationError);
+                Mediator.SendMessage(MediatorToken.LoginToken, response.AuthenticationError);
             else
                 RaiseCloseEvent();
         }
