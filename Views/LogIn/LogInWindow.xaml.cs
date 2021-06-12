@@ -7,23 +7,21 @@ namespace Views.LogIn
 {
     public partial class LogInWindow : Window
     {
-        private readonly ILoginViewModel _viewModel;
         private readonly IMessageMediator _mediator;
 
         public LogInWindow(IMessageMediator mediator, ILoginViewModel viewModel)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-            _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+            _ = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
             
             _mediator.Register(MediatorToken.LoginToken, Callback);
-            _viewModel.Closed += (_, _) => Close();
+            viewModel.Closed += (_, _) => Close();
             InitializeComponent();
         }
 
         protected override void OnClosed(EventArgs e)
         {
             _mediator.Unregister(MediatorToken.LoginToken, Callback);
-            _viewModel.Dispose();
             base.OnClosed(e);
         }
         

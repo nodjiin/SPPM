@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace SPPM
@@ -20,7 +21,7 @@ namespace SPPM
         private async void Application_Startup(object sender, StartupEventArgs e)
         {
             await _host.StartAsync();
-            _guiManager = new GuiManager(_host);
+            _guiManager = _host.Services.GetService<GuiManager>();
             _guiManager.DisplayLoginWindow();
         }
 

@@ -3,6 +3,7 @@
     public enum AuthenticationStatus
     {
         Unknown,
-        Connected
+        Unauthenticated,
+        Authenticated
     }
 }

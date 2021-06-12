@@ -33,11 +33,5 @@ namespace ViewModels.Login
             else
                 RaiseCloseEvent();
         }
-
-        public override void Dispose()
-        {
-            AuthenticateCommand = null;
-            // TODO dispose AuthenticationService
-        }
     }
 }
