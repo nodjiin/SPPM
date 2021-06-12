@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using Application.Utils.Extension;
 using DomainModel.Contracts.Authentication;
 using DomainModel.Contracts.Services;
@@ -30,7 +31,7 @@ namespace SPPM
                 _logger.TraceMissingServiceAndExit(nameof(LogInWindow));
             else
             {
-                loginWindow.Closed += HandleLoginFinishedAsync;
+                WeakEventManager<LogInWindow, EventArgs>.AddHandler(loginWindow, nameof(LogInWindow.Closed), HandleLoginFinishedAsync);
                 loginWindow.Show();
             }
         }

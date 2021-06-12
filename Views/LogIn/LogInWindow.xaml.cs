@@ -15,7 +15,7 @@ namespace Views.LogIn
             _ = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
             
             _mediator.Register(MediatorToken.LoginToken, Callback);
-            viewModel.Closed += (_, _) => Close();
+            WeakEventManager<ILoginViewModel, EventArgs>.AddHandler(viewModel, nameof(ILoginViewModel.Closed), (_, _) => Close());
             InitializeComponent();
         }
 
