@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using ViewModels.Contracts.Login;
 using ViewModels.Login;
 using Views.LogIn;
+using Views.Portfolio;
 
 namespace SPPM
 {
@@ -15,9 +16,9 @@ namespace SPPM
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((context, services) =>
                 {
-                    // services.AddSingleton<ITextService, TextService>();
                     services.AddScoped<LogInWindow>();
                     services.AddScoped<ILoginViewModel, LoginViewModel>();
+                    services.AddScoped<PortfolioWindow>();
                     services.AddSingleton<IAuthenticationService, AuthenticationService>();
                     services.AddSingleton<IMessageMediator, MessageMediator>();
                 });

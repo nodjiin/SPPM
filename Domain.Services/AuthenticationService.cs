@@ -7,7 +7,7 @@ namespace Domain.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
-        public IAuthenticationStatus Status { get; }
+        public AuthenticationStatus Status { get; }
 
         public Task<IAuthenticationResponse> AuthenticateAsync(string username, string password, params object[] args)
         {
