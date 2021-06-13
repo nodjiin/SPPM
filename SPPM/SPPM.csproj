@@ -9,6 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Domain.Contracts\Domain.Contracts.csproj" />
       <ProjectReference Include="..\Domain.Services\Domain.Services.csproj" />
+      <ProjectReference Include="..\Infrastructure.Repository\Infrastructure.Repository.csproj" />
       <ProjectReference Include="..\ViewModels\ViewModels.csproj" />
       <ProjectReference Include="..\Views\Views.csproj" />
     </ItemGroup>

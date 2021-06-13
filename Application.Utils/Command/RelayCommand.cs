@@ -30,4 +30,11 @@ namespace Application.Utils.Command
             _execute((TParameter) parameter);
         }
     }
+
+    public class RelayCommand : RelayCommand<object>
+    {
+        public RelayCommand(Action<object> execute, Predicate<object> canExecute = null) : base(execute, canExecute)
+        {
+        }
+    }
 }

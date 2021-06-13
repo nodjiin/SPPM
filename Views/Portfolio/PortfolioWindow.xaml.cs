@@ -7,6 +7,7 @@ namespace Views.Portfolio
     {
         public PortfolioWindow(IPortfolioViewModel portfolioViewModel)
         {
+            DataContext = portfolioViewModel;
             InitializeComponent();
         }
         

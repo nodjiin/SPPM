@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security;
 using System.Windows.Input;
 using Application.Utils.Command;
 using Application.Utils.Mediator;
@@ -16,13 +17,13 @@ namespace ViewModels.Login
         {
             _authenticationService =
                 authenticationService ?? throw new ArgumentNullException(nameof(authenticationService));
-            AuthenticateCommand = new RelayCommand<string>(Authenticate);
+            AuthenticateCommand = new RelayCommand<SecureString>(Authenticate);
         }
 
         public string Username { get; set; }
         public ICommand AuthenticateCommand { get; private set; }
 
-        private async void Authenticate(string password)
+        private async void Authenticate(SecureString password)
         {
             var response = await _authenticationService.AuthenticateAsync(Username, password);
 

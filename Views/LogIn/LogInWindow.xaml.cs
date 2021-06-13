@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Application.Utils.Mediator;
+using ViewModels.Contracts.Base;
 using ViewModels.Contracts.Login;
 
 namespace Views.LogIn
@@ -12,10 +13,10 @@ namespace Views.LogIn
         public LogInWindow(IMessageMediator mediator, ILoginViewModel viewModel)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
-            _ = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+            DataContext = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
             
             _mediator.Register(MediatorToken.LoginToken, Callback);
-            WeakEventManager<ILoginViewModel, EventArgs>.AddHandler(viewModel, nameof(ILoginViewModel.Closed), (_, _) => Close());
+            WeakEventManager<IRaiseCloseEvent, EventArgs>.AddHandler(viewModel, nameof(IRaiseCloseEvent.Closed), (_,_) => Close());
             InitializeComponent();
         }
 
