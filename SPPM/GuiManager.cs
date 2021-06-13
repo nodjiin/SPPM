@@ -42,8 +42,11 @@ namespace SPPM
             if (loginService?.Status == AuthenticationStatus.Authenticated)
                 DisplayAccountsPortfolioWindow();
             else
+            {
                 _logger.LogError(
                     $"Authentication status after login is: {Enum.GetName(typeof(AuthenticationStatus), loginService?.Status ?? AuthenticationStatus.Unknown)} ");
+                System.Windows.Application.Current.Shutdown();
+            }
         }
 
         private void DisplayAccountsPortfolioWindow()

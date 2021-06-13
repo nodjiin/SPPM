@@ -1,12 +1,13 @@
-﻿<Window x:Class="Views.LogIn.LogInWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:login="clr-namespace:ViewModels.Contracts.Login;assembly=ViewModels.Contracts"
-        mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance login:ILoginViewModel}"
-        Height="200" Width="250">
+﻿<base:BaseWindow x:Class="Views.LogIn.LogInWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:login="clr-namespace:ViewModels.Contracts.Login;assembly=ViewModels.Contracts"
+            xmlns:base="clr-namespace:Views.Base"
+            mc:Ignorable="d"
+            d:DataContext="{d:DesignInstance login:ILoginViewModel}"
+            Height="200" Width="250">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -55,4 +56,4 @@
             </Button>
         </Grid>
     </Grid>
-</Window>
+</base:BaseWindow>

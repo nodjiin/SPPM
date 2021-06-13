@@ -2,6 +2,7 @@
 {
     public enum MediatorToken
     {
-        LoginToken
+        LoginToken,
+        PortfolioToken
     }
 }
