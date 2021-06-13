@@ -4,6 +4,7 @@ using Application.Utils.Mediator;
 using Domain.Services;
 using DomainModel.Contracts.Services;
 using Infrastructure.Contracts.Repositories.Foundation;
+using Infrastructure.Entities.Contexts;
 using Infrastructure.Repository;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -36,6 +37,7 @@ namespace SPPM
                         .AddScoped<PortfolioWindow>()
                         .AddScoped<IPortfolioViewModel, PortfolioViewModel>()
                         .AddScoped<IUnitOfWork, UnitOfWork>()
+                        .AddScoped<SPPMContext>()
                         .AddSingleton<IAuthenticationService, AuthenticationService>()
                         .AddSingleton<IMessageMediator, MessageMediator>()
                         .AddSingleton<GuiManager>();

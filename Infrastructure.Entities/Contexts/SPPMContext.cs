@@ -2,6 +2,7 @@
 using System.Configuration;
 using Domain.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
@@ -9,13 +10,17 @@ namespace Infrastructure.Entities.Contexts
 {
     public class SPPMContext : DbContext
     {
-        public SPPMContext()
+        private readonly IConfiguration _configuration;
+
+        public SPPMContext(IConfiguration configuration)
         {
+            _configuration = configuration;
         }
 
-        public SPPMContext(DbContextOptions<SPPMContext> options)
+        public SPPMContext(DbContextOptions<SPPMContext> options, IConfiguration configuration)
             : base(options)
         {
+            _configuration = configuration;
         }
 
         public virtual DbSet<Account> Accounts { get; set; }
@@ -23,8 +28,11 @@ namespace Infrastructure.Entities.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // TODO read connection string from configuration.
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["SPPMContext"].ConnectionString);
+                // optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["SPPMContext"].ConnectionString);
+                // optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SPPMContext"));
+                optionsBuilder.UseSqlServer("Server=localhost;Database=SPPM;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -100,7 +108,8 @@ namespace Infrastructure.Entities.Contexts
 
         private void OnModelCreatingPartial(ModelBuilder modelBuilder)
         {
-            throw new NotImplementedException();
+            // TODO check
+            // throw new NotImplementedException();
         }
     }
 }

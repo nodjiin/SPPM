@@ -15,6 +15,7 @@ namespace SPPM
 
         public App()
         {
+            Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             _host = StartupManager.CreateHostBuilder(null).Build();
         }
 

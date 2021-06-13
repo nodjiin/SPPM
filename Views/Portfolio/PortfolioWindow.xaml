@@ -6,17 +6,18 @@
         xmlns:portfolio="clr-namespace:ViewModels.Contracts.Portfolio;assembly=ViewModels.Contracts"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance portfolio:IPortfolioViewModel}"
-        Title="Accounts Portfolio" Height="450" Width="800">
+        Title="Accounts Portfolio" Height="450" Width="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <DataGrid ItemsSource="{Binding Accounts}">
+        <DataGrid ItemsSource="{Binding Accounts}" 
+                  AutoGenerateColumns="False">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Target" Binding="{Binding Target}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Password" Binding="{Binding Password}"/>
+                <DataGridTextColumn Width="*" Header="Password" Binding="{Binding Password}"/>
             </DataGrid.Columns>
         </DataGrid>
         
