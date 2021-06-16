@@ -1,4 +1,5 @@
-﻿using Domain.Model.Contracts.Foundation;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Domain.Model.Contracts.Foundation;
 
 #nullable disable
 
@@ -11,6 +12,7 @@ namespace Domain.Model
         public string Name { get; set; }
 
         public virtual Profile Profile { get; set; }
+        
         public int Id { get; set; }
         public string Password { get; set; }
         public string Username { get; set; }

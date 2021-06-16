@@ -5,5 +5,7 @@ namespace Infrastructure.Contracts.Repositories
 {
     public interface IAccountRepository : IRepository<Account>
     {
+        public int GetAssociatedProfileId();
+        int GetNewValidId();
     }
 }

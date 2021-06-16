@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using Application.Utils.Command;
@@ -11,6 +10,7 @@ using Application.Utils.Mediator;
 using Domain.Model;
 using Infrastructure.Contracts.Repositories.Foundation;
 using Infrastructure.Repository;
+using Microsoft.Extensions.Logging;
 using ViewModels.Base;
 using ViewModels.Contracts.Portfolio;
 
@@ -19,11 +19,17 @@ namespace ViewModels.Portfolio
     public class PortfolioViewModel : BaseViewModel, IPortfolioViewModel
     {
         private readonly IUnitOfWork _unitOfWork;
-        public PortfolioViewModel(IMessageMediator mediator, IUnitOfWork unitOfWork) : base(mediator)
+        private readonly int _profileId;
+        private readonly ILogger<PortfolioViewModel> _logger;
+        
+        public PortfolioViewModel(IMessageMediator mediator, IUnitOfWork unitOfWork, ILogger<PortfolioViewModel> logger) : base(mediator)
         {
             _unitOfWork = unitOfWork ?? throw new ArgumentException(nameof(UnitOfWork));
+            _logger = logger;
+            // TODO checks to Enable save command
             SaveCommand = new RelayCommand(Save);
             Accounts = new ObservableCollection<Account>();
+            _profileId = unitOfWork.Accounts.GetAssociatedProfileId();
             LoadAccounts();
             CollectionChangedEventManager.AddHandler(Accounts, UpdateRepositoryOnAccountChanges);
         }
@@ -44,8 +50,7 @@ namespace ViewModels.Portfolio
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    // TODO add Username and others mandatory informations.
-                    _unitOfWork.Accounts.AddRange(e.NewItems?.OfType<Account>());
+                    AddNewAccounts(e.NewItems?.OfType<Account>());
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     _unitOfWork.Accounts.RemoveRange(e.OldItems?.OfType<Account>());
@@ -53,6 +58,19 @@ namespace ViewModels.Portfolio
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private void AddNewAccounts(IEnumerable<Account> accounts)
+        {
+            if (!accounts.Any()) _logger.LogError($"argument {accounts} is empty");
+            _unitOfWork.Accounts.AddRange(accounts.Select(a => UpdateAccount(a)));
+        }
+
+        private Account UpdateAccount(Account account)
+        {
+            account.Id = _unitOfWork.Accounts.GetNewValidId();
+            account.ProfileId = _profileId;
+            return account;
         }
     }
 }

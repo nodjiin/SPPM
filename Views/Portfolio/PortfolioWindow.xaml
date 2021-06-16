@@ -18,6 +18,7 @@
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Target" Binding="{Binding Target}"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Username" Binding="{Binding Username}"/>
                 <DataGridTextColumn Width="*" Header="Password" Binding="{Binding Password}"/>
             </DataGrid.Columns>
         </DataGrid>
